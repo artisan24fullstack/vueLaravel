@@ -10,6 +10,14 @@ Build a blog from scratch using Laravel, filament & Vue.js
 
 Tailwind.css - Framework Vue.js 
 
+> 
+- https://flowbite.com/
+  Start developing with an open-source library of over 600+ UI components, sections, and pages built with the utility classes from Tailwind CSS.
+
+- https://preline.co/
+Preline UI is an open-source set of prebuilt UI components based on the utility-first Tailwind CSS framework.
+
+
 **Server:** 
 
 Laravel 
@@ -17,6 +25,9 @@ Laravel
 **Packages:** 
 
  Jetstream - Filament
+
+> Curator : A media manager / picker plugin for Filament Panels.
+- https://filamentphp.com/plugins/awcodes-curator
 
 ## Functionality
 
@@ -66,3 +77,16 @@ php artisan migrate
 
    INFO  Success! (email adress) may now log in at http://localhost:8000/admin/login.  
 ```
+
+TODO
+
+php artisan make:model Post -m
+php artisan make:filament-resource Post
+
+php artisan make:controller HomeController --invokable
+php artisan make:resource PostResource
+
+composer require awcodes/filament-curator
+php artisan curator:install
+
+yes run migrate
