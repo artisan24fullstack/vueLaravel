@@ -32,7 +32,7 @@ composer require laravel/jetstream
 php artisan jetstream:install inertia
 ```
 
-### installation Jestream Inertia Vue.js
+### installation Filament
 
 ```
 composer require filament/filament:"^3.0"
