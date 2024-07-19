@@ -55,5 +55,14 @@ php artisan migrate
   2019_12_14_000001_create_personal_access_tokens_table .................................................................................. 13ms DONE
   2024_07_19_034547_create_sessions_table ................................................................................................. 9ms DONE
 ```
+ ### Create a user (admin)
 
+```
+ php artisan make:filament-user
+   
+ Name:
+ Email address:
+ Password:
 
+   INFO  Success! (email adress) may now log in at http://localhost:8000/admin/login.  
+```
