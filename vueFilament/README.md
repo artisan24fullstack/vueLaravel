@@ -21,6 +21,10 @@ Laravel
 ## Functionality
 
 
+--------------------------------
+
+composer require laravel/jetstream
+php artisan jetstream:install inertia
 
 
 
