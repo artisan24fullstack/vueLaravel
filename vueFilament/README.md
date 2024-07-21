@@ -81,13 +81,30 @@ php artisan migrate
 > php artisan make:model Post -m
 > php artisan make:filament-resource Post
 
-> 
+If ERROR NEXT
+```
+Home.vue:19 [Vue warn]: Failed to resolve component: AppLayout
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+```
+> import AppLayout from '@/Layouts/AppLayout.vue';
+
+> php artisan make:controller HomeController --invokable
+> php artisan make:resource PostResource
+
+
+If ERROR NEXT
+```
+chunk-LAPRAAXM.js?v=bc9533b6:1528 [Vue warn]: Property "posts" was accessed during render but is not defined on instance. 
+  at <AppLayout> 
+  at <Home jetstream= Object auth= Object errorBags= Array(0)  ... > 
+  at <Inertia initialPage= Object initialComponent= Object resolveComponent=fn<r>  ... > 
+  at <App>
+```
+
+> defineProps({posts:Array}); in Home.vue
 
 TODO
 
-
-php artisan make:controller HomeController --invokable
-php artisan make:resource PostResource
 
 composer require awcodes/filament-curator
 php artisan curator:install
