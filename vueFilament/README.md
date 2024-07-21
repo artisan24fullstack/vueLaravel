@@ -78,10 +78,13 @@ php artisan migrate
    INFO  Success! (email adress) may now log in at http://localhost:8000/admin/login.  
 ```
 
+> php artisan make:model Post -m
+> php artisan make:filament-resource Post
+
+> 
+
 TODO
 
-php artisan make:model Post -m
-php artisan make:filament-resource Post
 
 php artisan make:controller HomeController --invokable
 php artisan make:resource PostResource
