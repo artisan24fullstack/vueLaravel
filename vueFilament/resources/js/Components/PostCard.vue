@@ -1,13 +1,26 @@
 <script setup>
-    defineProps({
-        post:Object,
-    })
+import { computed } from 'vue';
+
+// Define props
+const props = defineProps({
+    post: Object,
+});
+
+// Compute the thumbnail URL
+const thumbnailUrl = computed(() => {
+    // Assuming post.thumbnail already starts with '/storage/'
+    // If not, prepend '/storage/' to the path
+    return props.post.thumbnail.startsWith('/storage/')
+        ? props.post.thumbnail
+        : '/storage/' + props.post.thumbnail;
+});
 </script>
+
 <template>
 
 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
-        <img class="rounded-t-lg" :src="post.thumbnail" alt="random" />
+        <img class="rounded-t-lg" :src="thumbnailUrl" alt="random" />
     </a>
     <div class="p-5">
         <a href="#">
