@@ -21,7 +21,7 @@ defineProps({
     <Head title="Welcome" />
 
     <AppLayout>
-            <div>
+            <div class="p-20 grid grid-cols-3 gap-4">
                 <PostCard
                     v-for="post in posts" :key="post.slug" :post="post"
                 />
