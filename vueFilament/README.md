@@ -10,9 +10,26 @@ Build a blog from scratch using Laravel, filament & Vue.js
 
 Tailwind.css - Framework Vue.js 
 
-> 
+> Framework for tailwind.css
+
+- https://daisyui.com/docs/install/
+daisyUI adds component class names to Tailwind CSS so you can make beautiful websites faster than ever.
+
+```
+npm i -D daisyui@latest
+
+  plugins: [
+    require('daisyui'),
+  ],
+
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
+
+<article class="prose"></article>
+
+```
+
 - https://flowbite.com/
-  Start developing with an open-source library of over 600+ UI components, sections, and pages built with the utility classes from Tailwind CSS.
+Start developing with an open-source library of over 600+ UI components, sections, and pages built with the utility classes from Tailwind CSS.
 
 - https://preline.co/
 Preline UI is an open-source set of prebuilt UI components based on the utility-first Tailwind CSS framework.
@@ -105,8 +122,67 @@ chunk-LAPRAAXM.js?v=bc9533b6:1528 [Vue warn]: Property "posts" was accessed duri
 
 TODO
 
+> BEFORE (23.35 correct)
+
+```
+php artisan make:model PostImage -m
+
+or 
+
+php artisan make:model PostImage
+php artisan make:migration create_post_images_table
+
+php artisan make:controller PostShowController --invokable
+```
+
+
+##### correction bug image
+
+```
+class PostResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+
+            // 'thumbnail' => $this->thumbnail
+
+            'thumbnail' => '/' . $this->thumbnail
+        ];
+    }
+}
+```
 
 composer require awcodes/filament-curator
 php artisan curator:install
 
 yes run migrate
+
+npm install -D cropperjs
+
+php artisan make:filament-theme
+
+https://filamentphp.com/plugins/awcodes-curator
+
+@import '<path-to-node-modules>/cropperjs/dist/cropper.css';
+@import '<path-to-vendor>/awcodes/filament-curator/resources/css/plugin.css'
+
+content: [
+    './vendor/awcodes/filament-curator/resources/**/*.blade.php',
+]
+
+https://filamentphp.com/docs/3.x/panels/themes#creating-a-custom-theme
+
+php artisan vendor:publish --tag="curator-config"
+```
+
+> TODO AFTER (35.44 NO READ)
+
+```
+php artisan make:model Category -m
+```
