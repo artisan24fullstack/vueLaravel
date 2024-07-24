@@ -173,13 +173,15 @@ Using Node.js v8.18.0
 
 - add code next in (theme.cs) 
 
-- add code tailwind.config.js (racine) VS not in admin tailwind.config.js
-
 ```
 
 @import '../../../../vendor/cropperjs/dist/cropper.css';
-@import '../../../../vendor/awcodes/filament-curator/resources/css/plugin.css';
+@import '../../../../vendor/awcodes/filament-curator/resources/css/plugin.css';   
 
+```
+- add code tailwind.config.js (racine) VS not in admin tailwind.config.js
+
+```
 content: [
     './vendor/awcodes/filament-curator/resources/**/*.blade.php',
 ]
@@ -191,6 +193,24 @@ php artisan vendor:publish --tag="curator-config"
 
   Copying file [C:\vueFilament\vendor\awcodes\filament-curator\config\curator.php] to [C:\vueFilament\config\curator.php]  DONE     
 
+```
+
+> AdminPanelProvider (Providers/Filament)
+
+#### step 4 add plugins in AdminPanelProvider
+```
+->plugins([
+            \Awcodes\Curator\CuratorPlugin::make()
+                ->label('Media')
+                ->pluralLabel('Media')
+                ->navigationIcon('heroicon-o-photo')
+                ->navigationGroup('Content')
+                ->navigationSort(3)
+                ->navigationCountBadge()
+                ->registerNavigation(false)
+                ->defaultListView('grid' || 'list')
+                ->resource(\App\Filament\Resources\CustomMediaResource::class)
+        ]);
 ```
 TODO
 
