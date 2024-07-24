@@ -120,6 +120,47 @@ chunk-LAPRAAXM.js?v=bc9533b6:1528 [Vue warn]: Property "posts" was accessed duri
 
 > defineProps({posts:Array}); in Home.vue
 
+
+### Installation Media Curator 
+
+#### step 1 Implementation via composer
+
+```
+composer require awcodes/filament-curator
+php artisan curator:install
+
+yes run migrate
+
+Running migrations...
+
+   INFO  Running migrations.
+
+  2024_07_24_083307_create_media_table .................................................................................................... 9ms DONE
+  2024_07_24_083308_add_tenant_aware_column_to_media_table ................................................................................ 8ms DONE
+
+curator has been installed!
+
+npm install -D cropperjs
+
+php artisan make:filament-theme
+```
+
+```
+
+
+https://filamentphp.com/plugins/awcodes-curator
+
+@import '<path-to-node-modules>/cropperjs/dist/cropper.css';
+@import '<path-to-vendor>/awcodes/filament-curator/resources/css/plugin.css'
+
+content: [
+    './vendor/awcodes/filament-curator/resources/**/*.blade.php',
+]
+
+https://filamentphp.com/docs/3.x/panels/themes#creating-a-custom-theme
+
+php artisan vendor:publish --tag="curator-config"
+```
 TODO
 
 > BEFORE (23.35 correct)
@@ -157,30 +198,6 @@ class PostResource extends JsonResource
     }
 }
 ```
-
-composer require awcodes/filament-curator
-php artisan curator:install
-
-yes run migrate
-
-npm install -D cropperjs
-
-php artisan make:filament-theme
-
-https://filamentphp.com/plugins/awcodes-curator
-
-@import '<path-to-node-modules>/cropperjs/dist/cropper.css';
-@import '<path-to-vendor>/awcodes/filament-curator/resources/css/plugin.css'
-
-content: [
-    './vendor/awcodes/filament-curator/resources/**/*.blade.php',
-]
-
-https://filamentphp.com/docs/3.x/panels/themes#creating-a-custom-theme
-
-php artisan vendor:publish --tag="curator-config"
-```
-
 > TODO AFTER (35.44 NO READ)
 
 ```
