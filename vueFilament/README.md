@@ -146,27 +146,50 @@ curator has been installed!
 
 ```
 
-#### step 2 configuration via NPM / theme / 
+#### step 2 configuration via NPM / create a theme / ...
+
+- https://filamentphp.com/docs/3.x/panels/themes#creating-a-custom-theme
 
 ```
 npm install -D cropperjs
 
 php artisan make:filament-theme
 
-```
+Using Node.js v8.18.0
+
+   INFO  Successfully created resources/css/filament/admin/theme.css and resources/css/filament/admin/tailwind.config.js!
+
+   WARN  Action is required to complete the theme setup:
+
+  ⇂ First, add a new item to the `input` array of `vite.config.js`: `resources/css/filament/admin/theme.css`
+  ⇂ Next, register the theme in the admin panel provider using `->viteTheme('resources/css/filament/admin/theme.css')`
+  ⇂ Finally, run `npm run build` to compile the theme
 
 ```
 
-@import '<path-to-node-modules>/cropperjs/dist/cropper.css';
-@import '<path-to-vendor>/awcodes/filament-curator/resources/css/plugin.css'
+#### step 3 FOLDER ressources/css/filament/admin/ 
+
+- with create 2 files (theme.css and tailwind.config.js)
+
+- add code next in (theme.cs) 
+
+- add code tailwind.config.js (racine) VS not in admin tailwind.config.js
+
+```
+
+@import '../../../../vendor/cropperjs/dist/cropper.css';
+@import '../../../../vendor/awcodes/filament-curator/resources/css/plugin.css';
 
 content: [
     './vendor/awcodes/filament-curator/resources/**/*.blade.php',
 ]
 
-https://filamentphp.com/docs/3.x/panels/themes#creating-a-custom-theme
 
 php artisan vendor:publish --tag="curator-config"
+
+   INFO  Publishing [curator-config] assets.
+
+  Copying file [C:\vueFilament\vendor\awcodes\filament-curator\config\curator.php] to [C:\vueFilament\config\curator.php]  DONE     
 
 ```
 TODO

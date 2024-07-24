@@ -10,6 +10,8 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/js/**/*.vue',
+        './vendor/awcodes/filament-curator/resources/**/*.blade.php',
+
     ],
 
     theme: {
