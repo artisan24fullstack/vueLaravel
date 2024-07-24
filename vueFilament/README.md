@@ -123,6 +123,10 @@ chunk-LAPRAAXM.js?v=bc9533b6:1528 [Vue warn]: Property "posts" was accessed duri
 
 ### Installation Media Curator 
 
+> Curator / A media manager / picker plugin for Filament Panels.
+
+- https://filamentphp.com/plugins/awcodes-curator 
+
 #### step 1 Implementation via composer
 
 ```
@@ -140,15 +144,18 @@ Running migrations...
 
 curator has been installed!
 
+```
+
+#### step 2 configuration via NPM / theme / 
+
+```
 npm install -D cropperjs
 
 php artisan make:filament-theme
-```
 
 ```
 
-
-https://filamentphp.com/plugins/awcodes-curator
+```
 
 @import '<path-to-node-modules>/cropperjs/dist/cropper.css';
 @import '<path-to-vendor>/awcodes/filament-curator/resources/css/plugin.css'
@@ -160,6 +167,7 @@ content: [
 https://filamentphp.com/docs/3.x/panels/themes#creating-a-custom-theme
 
 php artisan vendor:publish --tag="curator-config"
+
 ```
 TODO
 
