@@ -212,7 +212,19 @@ php artisan vendor:publish --tag="curator-config"
                     //->resource(\App\Filament\Resources\CustomMediaResource::class)
         ]);
 ```
-TODO
+> BUG IMG 6.35 TO 8 45
+
+If ERROR NEXT
+```
+Class "App\Models\Media" not found
+
+use Awcodes\Curator\Models\Media;
+
+change in PostCard.vue  <img class="rounded-t-lg" :src="thumbnail" alt="random" />
+
+
+```
+
 
 > BEFORE (23.35 correct)
 

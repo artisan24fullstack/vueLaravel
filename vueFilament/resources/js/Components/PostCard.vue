@@ -20,7 +20,7 @@ const thumbnailUrl = computed(() => {
 
 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a href="#">
-        <img class="rounded-t-lg" :src="thumbnailUrl" alt="random" />
+        <img class="rounded-t-lg" :src="thumbnail" alt="random" />
     </a>
     <div class="p-5">
         <a href="#">
@@ -40,5 +40,5 @@ const thumbnailUrl = computed(() => {
         </a>
     </div>
 </div>
-
+{{ post }}
 </template>
