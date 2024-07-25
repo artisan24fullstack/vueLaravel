@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\PostResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\PostResource\RelationManagers;
+use Awcodes\Curator\Components\Forms\CuratorPicker;
+use Awcodes\Curator\Components\Tables\CuratorColumn;
 
 class PostResource extends Resource
 {
@@ -32,7 +34,8 @@ class PostResource extends Resource
                 }),
                 Forms\Components\TextInput::make('slug')->required()->minLength(2)->unique(ignoreRecord: true),
                 Forms\Components\RichEditor::make('content')->required(),
-                Forms\Components\FileUpload::make('thumbnail')->image()->directory('posts/thumbnails')->required(),
+                //Forms\Components\FileUpload::make('thumbnail')->image()->directory('posts/thumbnails')->required(),
+                CuratorPicker::make('thumbnail')->required(),
             ]);
     }
 
@@ -40,7 +43,8 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('thumbnail')->sortable()->searchable(),
+                //Tables\Columns\ImageColumn::make('thumbnail')->sortable()->searchable(),
+                CuratorColumn::make('thumbnail')->size(50),
                 Tables\Columns\TextColumn::make('title')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('slug')->sortable()->searchable(),
             ])

@@ -207,9 +207,9 @@ php artisan vendor:publish --tag="curator-config"
                 ->navigationGroup('Content')
                 ->navigationSort(3)
                 ->navigationCountBadge()
-                ->registerNavigation(false)
-                ->defaultListView('grid' || 'list')
-                ->resource(\App\Filament\Resources\CustomMediaResource::class)
+                    //->registerNavigation(false)
+                    //->defaultListView('grid' || 'list')
+                    //->resource(\App\Filament\Resources\CustomMediaResource::class)
         ]);
 ```
 TODO
