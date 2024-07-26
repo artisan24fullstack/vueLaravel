@@ -222,23 +222,55 @@ use Awcodes\Curator\Models\Media;
 
 change in PostCard.vue  <img class="rounded-t-lg" :src="thumbnail" alt="random" />
 
-
 ```
 
+>
+```
 
-> BEFORE (23.35 correct)
+```
+> BEFORE (17.00) and return (9.00)
+
+> post_images
 
 ```
 php artisan make:model PostImage -m
 
-or 
+$table->foreignId('post_id')->constrained()->onDelete('cascade');
+$table->foreignId('media_id')->constrained('media')->onDelete('cascade');
 
-php artisan make:model PostImage
-php artisan make:migration create_post_images_table
-
-php artisan make:controller PostShowController --invokable
+php artisan migrate
 ```
 
+> change 19.23 
+```
+In Post.php
+
+    //public function postImages(): BelongsTo
+    //{
+    //    return $this->belongsTo(PostImage::class, 'post_id', 'id');
+    //}
+
+    public function getImage()
+    {
+        return Media::where('id', $this->thumbnail)->first();
+    }
+
+In PostResource
+
+            'thumbnail' => $this->getImage()->path,
+
+In PostResource (FORM)
+
+    CuratorPicker::make('thumbnail')->required()    
+    ->relationship('postImages', 'id'),
+
+
+```
+> TODO (24.30 correct)
+
+```
+php artisan make:controller PostShowController --invokable
+```
 
 ##### correction bug image
 
@@ -261,6 +293,8 @@ class PostResource extends JsonResource
     }
 }
 ```
+
+
 > TODO AFTER (35.44 NO READ)
 
 ```
