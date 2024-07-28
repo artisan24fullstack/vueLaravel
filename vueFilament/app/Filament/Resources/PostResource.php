@@ -35,7 +35,9 @@ class PostResource extends Resource
                 Forms\Components\TextInput::make('slug')->required()->minLength(2)->unique(ignoreRecord: true),
                 Forms\Components\RichEditor::make('content')->required(),
                 //Forms\Components\FileUpload::make('thumbnail')->image()->directory('posts/thumbnails')->required(),
-                CuratorPicker::make('thumbnail')->required()->relationship('featured_image', 'id'),
+                //CuratorPicker::make('thumbnail')->required()->relationship('postImages', 'id'),
+                CuratorPicker::make('thumbnail')->required(),
+
             ]);
     }
 

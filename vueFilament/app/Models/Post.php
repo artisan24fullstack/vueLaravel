@@ -19,9 +19,14 @@ class Post extends Model
         'thumbnail'
     ];
 
-    public function featuredImage(): BelongsTo
+    public function getImage()
     {
-        return $this->belongsTo(Media::class, 'featured_image_id', 'id');
+        return Media::where('id', $this->thumbnail)->first();
     }
+
+    //public function postImages(): BelongsTo
+    //{
+    //    return $this->belongsTo(PostImage::class, 'post_id', 'id');
+    //}
 
 }
