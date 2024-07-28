@@ -40,5 +40,4 @@ const thumbnailUrl = computed(() => {
         </a>
     </div>
 </div>
-{{ post }}
 </template>

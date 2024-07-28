@@ -265,8 +265,8 @@ Call to undefined method App\Models\Post::featured_image()
 ```
 php artisan make:model PostImage -m
 
-$table->foreignId('post_id')->constrained()->onDelete('cascade');
-$table->foreignId('media_id')->constrained('media')->onDelete('cascade');
+    $table->foreignId('post_id')->constrained()->onDelete('cascade');
+    $table->foreignId('media_id')->constrained('media')->onDelete('cascade');
 
 php artisan migrate
 ```
@@ -275,24 +275,52 @@ php artisan migrate
 ```
 In Post.php
 
-    //public function postImages(): BelongsTo
-    //{
-    //    return $this->belongsTo(PostImage::class, 'post_id', 'id');
-    //}
-
     public function getImage()
     {
         return Media::where('id', $this->thumbnail)->first();
     }
 
+    //public function postImages(): BelongsTo
+    //{
+    //    return $this->belongsTo(PostImage::class, 'post_id', 'id');
+    //}
+
 In PostResource
 
-            'thumbnail' => $this->getImage()->path,
+    //'thumbnail' => 'storage/' . $this->getImage()->path
+    'thumbnail' => $this->getImage()->path,
 
 In PostResource (FORM)
 
-    CuratorPicker::make('thumbnail')->required()    
-    ->relationship('postImages', 'id'),
+    CuratorPicker::make('thumbnail')->required(),
+
+In PostCard.vue
+
+<script setup>
+import { computed } from 'vue';
+
+// Define props
+const props = defineProps({
+    post: Object,
+});
+
+// Compute the thumbnail URL
+const thumbnailUrl = computed(() => {
+    // Assuming post.thumbnail already starts with '/storage/'
+    // If not, prepend '/storage/' to the path
+    return props.post.thumbnail.startsWith('/storage/')
+        ? props.post.thumbnail
+        : '/storage/' + props.post.thumbnail;
+});
+</script>
+<template>
+
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <a href="#">
+        <img class="rounded-t-lg" :src="thumbnailUrl" alt="random" />
+    </a>
+</div>
+</template>
 
 
 ```
