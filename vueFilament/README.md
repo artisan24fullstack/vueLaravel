@@ -120,6 +120,27 @@ chunk-LAPRAAXM.js?v=bc9533b6:1528 [Vue warn]: Property "posts" was accessed duri
 
 > defineProps({posts:Array}); in Home.vue
 
+##### correction bug image
+
+```
+class PostResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+
+            // 'thumbnail' => $this->thumbnail
+
+            'thumbnail' => '/' . $this->thumbnail
+        ];
+    }
+}
+```
 
 ### Installation Media Curator 
 
@@ -171,7 +192,7 @@ Using Node.js v8.18.0
 
 - with create 2 files (theme.css and tailwind.config.js)
 
-- add code next in (theme.cs) 
+- add code next in (theme.css) 
 
 ```
 
@@ -224,8 +245,17 @@ change in PostCard.vue  <img class="rounded-t-lg" :src="thumbnail" alt="random" 
 
 ```
 
->
+
+> BETWEEN 7.30 AND 17.00 (TESTING)
+
+> #Relationships Form component / Model
+
 ```
+->relationship('featured_image', 'id'),
+
+BadMethodCallException
+
+Call to undefined method App\Models\Post::featured_image()
 
 ```
 > BEFORE (17.00) and return (9.00)
@@ -272,27 +302,7 @@ In PostResource (FORM)
 php artisan make:controller PostShowController --invokable
 ```
 
-##### correction bug image
 
-```
-class PostResource extends JsonResource
-{
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(Request $request): array
-    {
-        return [
-
-            // 'thumbnail' => $this->thumbnail
-
-            'thumbnail' => '/' . $this->thumbnail
-        ];
-    }
-}
-```
 
 
 > TODO AFTER (35.44 NO READ)

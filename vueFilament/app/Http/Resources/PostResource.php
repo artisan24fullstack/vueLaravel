@@ -20,7 +20,9 @@ class PostResource extends JsonResource
             'slug' => $this->slug,
             'content' => $this->content,
             //'thumbnail' => $this->thumbnail
+            //'thumbnail' => '/' . $this->thumbnail { "title": "test", "slug": "test", "content": "<p>test</p>", "thumbnail": "/2" }
             'thumbnail' => $this->featuredImage
+
         ];
     }
 }
