@@ -25,7 +25,7 @@ const thumbnailUrl = computed(() => {
                 <img class="rounded-t-lg" :src="thumbnailUrl"  :alt="post.alt_text" />
                 <small class="font-mono text-sm" v-if="post.caption">{{ post.caption }}</small>
                 <h1 class="text-3xl font-bold text-gray-900 dark:text-white">{{post.title}}</h1>
-                <div class="mt-4 text-gray-600 dark:text-gray-400"  v-html="post.content"></div>
+                <article class="mt-4 prose text-gray-600 dark:text-gray-400"  v-html="post.content"></article>
             </div>
 
     </AppLayout>
