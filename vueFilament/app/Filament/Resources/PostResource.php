@@ -34,9 +34,20 @@ class PostResource extends Resource
                 }),
                 Forms\Components\TextInput::make('slug')->required()->minLength(2)->unique(ignoreRecord: true),
                 Forms\Components\RichEditor::make('content')->required(),
-                //Forms\Components\FileUpload::make('thumbnail')->image()->directory('posts/thumbnails')->required(),
-                //CuratorPicker::make('thumbnail')->required()->relationship('postImages', 'id'),
                 CuratorPicker::make('thumbnail')->required(),
+                Forms\Components\Select::make('categories')
+                ->searchable()
+                ->createOptionForm([
+                    Forms\Components\TextInput::make('title')
+                    ->live(onBlur: true)
+                    ->required()->minLength(2)
+                    ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
+                        $set('slug', Str::slug($state));
+                    }),
+                    Forms\Components\TextInput::make('slug')->required()->minLength(2),
+                    Forms\Components\RichEditor::make('content'),
+                ])
+                ->relationship('categories', 'title')->required(),
 
             ]);
     }

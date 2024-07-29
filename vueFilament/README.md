@@ -426,12 +426,12 @@ php artisan migrate
 ```
 In PostResource.php
 
-Select::make('categories')
+Forms\Components\Select::make('categories')
 ->searchable()
 ->createOptionForm([
-    TextInput::make('title')->required()->minLenght(2),
-    TextInput::make('slug')->required()->minLenght(2),
-    RichEditor::make('content'),
+    Forms\Components\TextInput::make('title')->required()->minLength(2),
+    Forms\Components\TextInput::make('slug')->required()->minLength(2),
+    Forms\Components\RichEditor::make('content'),
 ])
 ->relationship('categories', 'title')->required(),
 
