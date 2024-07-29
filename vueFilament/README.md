@@ -324,17 +324,169 @@ const thumbnailUrl = computed(() => {
 
 
 ```
-> TODO (24.30 correct)
+> TODO (24.0 correct)
 
 ```
 php artisan make:controller PostShowController --invokable
+
+
+In PostShowController (Post $post)
+
+return inertia()->render('PostShow', [
+    'post' => PostResource::make($post)
+]);
+
+In web.php
+
+Route::get('/articles/{post:slug}', PostShowController::class)->name('post.show');
+
+In PostCard.vue
+
+:href="route('post.show', post)"
+
+create PostShow.vue
+
+<script setup>
+import AppLayout from '@/Layouts/AppLayout.vue';
+
+defineProps({
+    post: Object,
+});
+
+</script>
+
+<template>
+
+    <AppLayout>
+            <div class="max-w-3xl mx-auto">
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-white">{{post.title}}</h1>
+                <div class="mt-4 text-gray-600 dark:text-gray-400"  v-html="{{post.content}}"></div>
+            </div>
+
+            {{post}}
+    </AppLayout>
+
+</template>
+
+
+In PostResource
+
+            'thumbnail' => '/' . $this->getImage()->path,
+            'caption' => $this->getImage()->caption,
+            'alt_text' => $this->getImage()->description
+
 ```
 
+> Install Framework css Daisy (32.25)
 
-
+```
+<article class="prose">
+</article>
+```
 
 > TODO AFTER (35.44 NO READ)
 
 ```
 php artisan make:model Category -m
+
+$table->string('title');
+$table->string('slug')->unique();
+$table->text('content');
+
+php artisan migrate
+
+```
+
+> (37.20)
+
+```
+php artisan make:migration create_category_post_table
+
+In category_post
+
+$table->foreignIdFor(Post::class);
+$table->foreignIdFor(Category::class);
+
+php artisan migrate
+
+In Category (Model)
+
+protected $fillable = [
+    'title',
+    'slug',
+    'content',
+]
+
+php artisan migrate
+
+```
+
+> (39)
+
+```
+In PostResource.php
+
+Select::make('categories')
+->searchable()
+->createOptionForm([
+    TextInput::make('title')->required()->minLenght(2),
+    TextInput::make('slug')->required()->minLenght(2),
+    RichEditor::make('content'),
+])
+->relationship('categories', 'title')->required(),
+
+In Post.php
+
+public function categories(): BelongsToMany
+{
+    return $this->belongsToMany(Category::class);
+}
+```
+
+> Categories
+
+```
+php artisan make:filament-resource CategoryResource
+
+In CategoryResource.php
+
+Select::make('categories')
+->searchable()
+->createOptionForm([
+    TextInput::make('title')->required()->minLenght(2),
+    TextInput::make('slug')->required()->minLenght(2),
+    RichEditor::make('content'),
+])
+->relationship('categories', 'title')->required(),
+
+Tables\Columns\TextColumn::make('title')->searchable(),
+Tables\Columns\TextColumn::make('slug')->searchable(),
+
+```
+
+> PostResource method excerpt
+
+```
+
+'excerpt' => Str::words(strip_tags($this->content), 30),
+
+v-html="post.excerpt"
+
+```
+
+> TODO READ (5.00) CategoryShowController with (Category $category)
+
+```
+php artisan make:controller CategoryShowController --invokable
+
+php artisan make:resource CategoryResource
+
+return inertia()->render('CategoryShow', [
+    'category' => CategoryResource::make($category)
+]);
+
+
+create Category/Show.vue
+
+
 ```
