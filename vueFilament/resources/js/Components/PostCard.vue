@@ -20,7 +20,7 @@ const thumbnailUrl = computed(() => {
 
 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <a :href="route('post.show', post)" >
-        <img class="rounded-t-lg" :src="thumbnailUrl" alt="random" />
+        <img class="rounded-t-lg" :src="thumbnailUrl" :alt="post.alt_text" />
     </a>
     <div class="p-5">
         <a href="#">

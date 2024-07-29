@@ -21,13 +21,13 @@ const thumbnailUrl = computed(() => {
 <template>
 
     <AppLayout>
-            <div class="max-w-3xl mx-auto">
-                <img class="rounded-t-lg" :src="thumbnailUrl" alt="random" />
+            <div class="max-w-3xl mx-auto space-y-3">
+                <img class="rounded-t-lg" :src="thumbnailUrl"  :alt="post.alt_text" />
+                <small class="font-mono text-sm" v-if="post.caption">{{ post.caption }}</small>
                 <h1 class="text-3xl font-bold text-gray-900 dark:text-white">{{post.title}}</h1>
                 <div class="mt-4 text-gray-600 dark:text-gray-400"  v-html="post.content"></div>
             </div>
 
-            {{post}}
     </AppLayout>
 
 </template>
