@@ -415,7 +415,7 @@ protected $fillable = [
     'title',
     'slug',
     'content',
-]
+];
 
 php artisan migrate
 
