@@ -338,7 +338,7 @@ return inertia()->render('PostShow', [
 
 In web.php
 
-Route::get('/articles/{post:slug}', PostShowController::class)->name('post.show');
+Route::get('/article/{post:slug}', PostShowController::class)->name('post.show');
 
 In PostCard.vue
 
@@ -360,7 +360,7 @@ defineProps({
     <AppLayout>
             <div class="max-w-3xl mx-auto">
                 <h1 class="text-3xl font-bold text-gray-900 dark:text-white">{{post.title}}</h1>
-                <div class="mt-4 text-gray-600 dark:text-gray-400"  v-html="{{post.content}}"></div>
+                <div class="mt-4 text-gray-600 dark:text-gray-400"  v-html="post.content"></div>
             </div>
 
             {{post}}
@@ -481,7 +481,7 @@ php artisan make:controller CategoryShowController --invokable
 
 php artisan make:resource CategoryResource
 
-return inertia()->render('CategoryShow', [
+return inertia()->render('Category/Show', [
     'category' => CategoryResource::make($category)
 ]);
 

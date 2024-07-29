@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostShowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use Inertia\Inertia;
 */
 
 Route::get('/', HomeController::class);
+Route::get('/article/{post:slug}', PostShowController::class)->name('post.show');
+
 /*
 Route::get('/', function () {
     return Inertia::render('Home', [
