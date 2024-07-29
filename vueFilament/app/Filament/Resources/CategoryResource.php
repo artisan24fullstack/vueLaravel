@@ -3,22 +3,20 @@
 namespace App\Filament\Resources;
 
 use Filament\Forms;
-use App\Models\Post;
 use Filament\Tables;
+use App\Models\Category;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\PostResource\Pages;
+use App\Filament\Resources\CategoryResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\PostResource\RelationManagers;
-use Awcodes\Curator\Components\Forms\CuratorPicker;
-use Awcodes\Curator\Components\Tables\CuratorColumn;
+use App\Filament\Resources\CategoryResource\RelationManagers;
 
-class PostResource extends Resource
+class CategoryResource extends Resource
 {
-    protected static ?string $model = Post::class;
+    protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -32,17 +30,8 @@ class PostResource extends Resource
                 ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
                     $set('slug', Str::slug($state));
                 }),
-                Forms\Components\TextInput::make('slug')->required()->minLength(2)->unique(ignoreRecord: true),
-                Forms\Components\RichEditor::make('content')->required(),
-                CuratorPicker::make('thumbnail')->required(),
-                /*
-                Forms\Components\Select::make('categories')
-                ->searchable()
-                ->createOptionForm([
-
-                ])
-                ->relationship('categories', 'title')->required(),
-                */
+                Forms\Components\TextInput::make('slug')->required()->minLength(2),
+                Forms\Components\RichEditor::make('content'),
             ]);
     }
 
@@ -50,10 +39,8 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                //Tables\Columns\ImageColumn::make('thumbnail')->sortable()->searchable(),
-                CuratorColumn::make('thumbnail')->size(50),
-                Tables\Columns\TextColumn::make('title')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('slug')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('title')->searchable(),
+                Tables\Columns\TextColumn::make('slug')->searchable(),
             ])
             ->filters([
                 //
@@ -81,9 +68,9 @@ class PostResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPosts::route('/'),
-            'create' => Pages\CreatePost::route('/create'),
-            'edit' => Pages\EditPost::route('/{record}/edit'),
+            'index' => Pages\ListCategories::route('/'),
+            'create' => Pages\CreateCategory::route('/create'),
+            'edit' => Pages\EditCategory::route('/{record}/edit'),
         ];
     }
 }
